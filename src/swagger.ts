@@ -33,7 +33,7 @@ const doc = {
     },
 
     paths: {
-        "/restaurants": {
+        "/api/restaurants": {
             get: {
                 tags: [ "Restaurant" ],
                 summary: "get all restaurants on server",
@@ -122,7 +122,7 @@ const doc = {
             }
         },
 
-        "/restaurants/{id}": {
+        "/api/restaurants/{id}": {
             get: {
                 tags: [ "Restaurant" ],
                 description: "route handler for a single restaurant by id",
