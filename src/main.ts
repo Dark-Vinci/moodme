@@ -2,6 +2,8 @@ import express, { Express, Request, Response } from "express";
 import swaggerUI from "swagger-ui-express";
 import mongoose from "mongoose";
 import config from "config";
+import compression from "compression";
+import helmet from "helmet";
 
 import swaggerDocs from "./swagger";
 import resRouter from "./restaurantRouter";
@@ -13,6 +15,8 @@ class App {
     constructor () {
         this.connectDB();
 
+        this.app.use(compression());
+        this.app.use(helmet());
         this.app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
         this.app.use("/api/restaurants", resRouter);
         this.app.all("*", (req: Request, res: Response) => { res.send("page 404") });
