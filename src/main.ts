@@ -30,7 +30,7 @@ class App {
             const dbURI = config.get("db") as string;
 
             await mongoose.connect(dbURI);
-            console.log("connected to the db")
+            console.log(`connected to ${ dbURI }`)
         } catch(ex) {
             console.log('couldnt connect');
             // process.exit(1);
