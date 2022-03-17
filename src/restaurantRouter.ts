@@ -1,35 +1,64 @@
-import express, { Request, Response, Router } from "express";
+import express, { 
+    Request, 
+    Response,
+    Router, 
+    NextFunction 
+} from "express";
+import mongoose from "mongoose";
 
-import { data as Restaurant } from "./data";
+import Restaurant from "./model";
 
 class RestaurantRouter {
     private router = express.Router();
 
     constructor () {
-        this.router.get("/:id", async (req: Request, res: Response) => {
-            const restaurant_id = req.params.id as string;
+        // route handler for getting a restaurant object by its id
+        this.router.get("/:id", async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const restaurant_id = req.params.id;
+                
+                // cehck for valid object id
+                if (!mongoose.isValidObjectId(restaurant_id)) {
+                    return res.status(400).json({ data: null, message: 'invalid id' });
+                }
 
-            const restaurant = Restaurant.find(el => el.restaurant_id == restaurant_id)
+                const restaurant = await Restaurant.findById(restaurant_id);
 
-            if (!restaurant) {
-                return res.status(400).json({ data: null, message: 'not found' });
+                // restaurant not found
+                if (!restaurant) {
+                    return res.status(404).json({ data: null, message: 'not found' });
+                }
+
+                // object found and returned as json
+                return res.json({ data: restaurant, message: "success" });
+            } catch (ex) {
+                // server error
+                next(ex);
             }
-
-            return res.json({ data: restaurant, message: "success" });
         });
 
-        this.router.get("/", async (req: Request, res: Response) => {
-            const q = req.query.q as unknown as number || 1;
-            const n = req.query.n as unknown as number || 3;
+        // handler for getting list of restaurant object
+        this.router.get("/", async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                // pageSize and pageNumber pagination with default of 10 and 1 respectively
+                const pageNumber = req.query.pageNumber as unknown as number || 1;
+                const pageSize = req.query.pageSize as unknown as number || 10;
 
-            const toSkip = (q - 1) * n;
+                // number of document to be skipped
+                const toSkip = (pageNumber - 1) * pageSize;
 
-            const restaurants = Restaurant.slice(toSkip, toSkip + n)
+                const restaurants = await Restaurant.find()
+                    .limit(pageSize).skip(toSkip)
 
-            return res.json({ data: restaurants, message: "success" });
+                // returned json object
+                return res.json({ data: restaurants, message: "success" });
+            } catch (ex) {
+                next(ex);
+            }
         });
     }
 
+    // static object for returing the router object
     public static init (): Router {
         const routeClass = new RestaurantRouter()
         return routeClass.router;

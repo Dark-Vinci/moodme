@@ -1,24 +1,46 @@
 import express, { Express, Request, Response } from "express";
 import swaggerUI from "swagger-ui-express";
+import mongoose from "mongoose";
+import config from "config";
 
 import swaggerDocs from "./swagger";
-import {data} from "./data";
 import resRouter from "./restaurantRouter";
 
 class App {
     readonly app: Express = express();
     private port = process.env.PORT || 3030;
-    private data = data;
 
     constructor () {
+        this.connectDB();
 
         this.app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
-        this.app.use("/restaurants", resRouter);
+        this.app.use("/api/restaurants", resRouter);
         this.app.all("*", (req: Request, res: Response) => { res.send("page 404") });
         this.app.use((error, req: Request, res: Response) => { return res.send("something went wrong on the erver"); })
         
         this.app.listen({ port: this.port }, () => console.log(`server running at port ${ this.port }`))
     }
+
+    private async connectDB (): Promise<void> {
+        try{
+            const dbURI = config.get("db") as string;
+
+            await mongoose.connect(dbURI);
+            console.log("connected to the db")
+        } catch(ex) {
+            console.log('couldnt connect');
+            process.exit(1);
+        }
+    }
+
+    // private async insertData () {
+    //     try {
+    //         await Restaurant.insertMany(data);
+    //         console.log('data has been inserted')
+    //     } catch (ex: any) {
+    //         console.log("err", ex.message)
+    //     }
+    // }
 
     public static init (): App {
         return new App();
@@ -32,3 +54,4 @@ class App {
 App.init();
 
 export default App;
+

@@ -33,187 +33,201 @@ const doc = {
     },
 
     paths: {
-        restaurants: {
-            "/restaurants": {
-                get: {
-                    tags: [ "Restaurants" ],
-                    summary: "get all restaurants on server",
-                    description: "route handler to get all the users in the application",
-                    parameters: [
-                        {
-                            name: "q",
-                            in: "query",
-                            type: "integer",
-                            required: true,
-                        },
-                        {
-                            name: "n",
-                            in: "query",
-                            type: "integer",
-                            required: true,
-                        }
-                    ],
-        
-                    responses: {
-                        200: {
-                            description: "Ok/success",
-                            schema: {
-                                type: "array",
-                                items: {
-                                    schema: {
-                                        type: "object",
-                                        properties: {
-                                            message: {
-                                                type: "string",
-                                            },
-        
-                                            data: {
-                                                schema: {
-                                                    type: "object",
-                                                    properties: {
-                                                        address: {
-                                                            schema:{
-                                                                type: "object",
-                                                                properties: {
-                                                                    building: "string",
-                                                                    street: "string",
-                                                                }
+        "/restaurants": {
+            get: {
+                tags: [ "Restaurant" ],
+                summary: "get all restaurants on server",
+                description: "route handler to get all the users in the application",
+                parameters: [
+                    {
+                        name: "pageNumber",
+                        in: "query",
+                        type: "integer",
+                        required: true,
+                    },
+                    {
+                        name: "pageSize",
+                        in: "query",
+                        type: "integer",
+                        required: true,
+                    }
+                ],
+    
+                responses: {
+                    200: {
+                        description: "Ok/success",
+                        schema: {
+                            type: "array",
+                            items: {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        message: {
+                                            type: "string",
+                                        },
+    
+                                        data: {
+                                            schema: {
+                                                type: "object",
+                                                properties: {
+                                                    address: {
+                                                        schema:{
+                                                            type: "object",
+                                                            properties: {
+                                                                building: "string",
+                                                                street: "string",
                                                             }
-                                                        },
-        
-                                                        grades: {
-                                                            schema: {
-                                                                type: "array",
-                                                                items: {
-                                                                    schema: {
-                                                                        type: "object",
-                                                                        properties: {
-                                                                            date: "object",
-                                                                            grade: "string",
-                                                                            score: "integer"
-                                                                        }
+                                                        }
+                                                    },
+    
+                                                    grades: {
+                                                        schema: {
+                                                            type: "array",
+                                                            items: {
+                                                                schema: {
+                                                                    type: "object",
+                                                                    properties: {
+                                                                        date: "object",
+                                                                        grade: "string",
+                                                                        score: "integer"
                                                                     }
                                                                 }
                                                             }
-                                                        },
-        
-                                                        cuisine: {
-                                                            type: "string"
-                                                        },
-                                                        name: {
-                                                            type: "string",
-                                                        },
-        
-                                                        restaurant_id: {
-                                                            type: "string",
+                                                        }
+                                                    },
+    
+                                                    cuisine: {
+                                                        type: "string"
+                                                    },
+                                                    name: {
+                                                        type: "string",
+                                                    },
+    
+                                                    restaurant_id: {
+                                                        type: "string",
+                                                    }
+                                                }
+                                            }
+                                        },
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    500: {
+                        description: "failure",
+                        summary: "problem with server"
+                    }
+                }
+            }
+        },
+
+        "/restaurants/{id}": {
+            get: {
+                tags: [ "Restaurant" ],
+                description: "route handler for a single restaurant by id",
+                summary: "get restaurant by id",
+                parameters: [
+                    {
+                        name: "id",
+                        in: "path",
+                        required: true,
+                        type: "string",
+                        description: "the id the server will find to find the restaurant object"
+                    }
+                ],
+    
+                responses: {
+                    200: {
+                        description: "Ok/success",
+                        schema: {
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+
+                                data: {
+                                    schema: {
+                                        type: "object",
+                                        properties: {
+                                            address: {
+                                                schema:{
+                                                    type: "object",
+                                                    properties: {
+                                                        building: "string",
+                                                        street: "string",
+                                                    }
+                                                }
+                                            },
+
+                                            grades: {
+                                                schema: {
+                                                    type: "array",
+                                                    items: {
+                                                        schema: {
+                                                            type: "object",
+                                                            properties: {
+                                                                date: "object",
+                                                                grade: "string",
+                                                                score: "integer"
+                                                            }
                                                         }
                                                     }
                                                 }
                                             },
-                                        }
-                                    }
-                                }
-                            }
-                        },
-                        500: {
-                            description: "failure",
-                            summary: "problem with server"
-                        }
-                    }
-                }
-            },
 
-            "/restaurants/{ id }": {
-                get: {
-                    tags: [ "Restaurant" ],
-                    description: "route handler for a single restaurant by id",
-                    summary: "get restaurant by id",
-                    parameters: [
-                        {
-                            name: "id",
-                            in: "path",
-                            required: true,
-                            type: "string",
-                            description: "the id the server will find to find the restaurant object"
-                        }
-                    ],
-        
-                    responses: {
-                        200: {
-                            description: "Ok/success",
-                            schema: {
-                                type: "object",
-                                properties: {
-                                    message: {
-                                        type: "string",
-                                    },
+                                            cuisine: {
+                                                type: "string"
+                                            },
+                                            name: {
+                                                type: "string",
+                                            },
 
-                                    data: {
-                                        schema: {
-                                            type: "object",
-                                            properties: {
-                                                address: {
-                                                    schema:{
-                                                        type: "object",
-                                                        properties: {
-                                                            building: "string",
-                                                            street: "string",
-                                                        }
-                                                    }
-                                                },
-
-                                                grades: {
-                                                    schema: {
-                                                        type: "array",
-                                                        items: {
-                                                            schema: {
-                                                                type: "object",
-                                                                properties: {
-                                                                    date: "object",
-                                                                    grade: "string",
-                                                                    score: "integer"
-                                                                }
-                                                            }
-                                                        }
-                                                    }
-                                                },
-
-                                                cuisine: {
-                                                    type: "string"
-                                                },
-                                                name: {
-                                                    type: "string",
-                                                },
-
-                                                restaurant_id: {
-                                                    type: "string",
-                                                }
+                                            restaurant_id: {
+                                                type: "string",
                                             }
                                         }
-                                    },
-                                }
-                            }
-                        },
-        
-                        404: {
-                            description: "User not found",
-                            schema: {
-                                type: "object",
-                                properties: {
-                                    message: {
-                                        type: "string",
-                                    },
-
-                                    data: {
-                                        type: "object",
                                     }
+                                },
+                            }
+                        }
+                    },
+    
+                    404: {
+                        description: "User not found",
+                        schema: {
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+
+                                data: {
+                                    type: "object",
                                 }
                             }
-                        },
-
-                        500: {
-                            description: "server error"
                         }
+                    },
+
+                    400: {
+                        description: "invalid object id",
+                        schema: {
+                            type: "object",
+                            properties: {
+                                message: {
+                                    type: "string",
+                                },
+
+                                data: {
+                                    type: "object",
+                                }
+                            }
+                        }
+                    },
+
+                    500: {
+                        description: "server error"
                     }
                 }
             }

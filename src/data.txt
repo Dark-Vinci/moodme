@@ -1,0 +1,1538 @@
+const mongoose = require("mongoose");
+const Restaurant = require("./model");
+
+const data =  [{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4292a"
+  },
+  "address": {
+    "building": "2780",
+    "street": "Stillwell Avenue"
+  },
+  "cuisine": "American",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-06-10T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 5
+    },
+    {
+      "date": {
+        "$date": "2013-06-05T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 7
+    },
+    {
+      "date": {
+        "$date": "2012-04-13T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2011-10-12T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    }
+  ],
+  "name": "Riviera Caterer",
+  "restaurant_id": "40356018"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4292b"
+  },
+  "address": {
+    "building": "7114",
+    "street": "Avenue U"
+  },
+  "cuisine": "Delicatessen",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-05-29T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2014-01-14T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2013-08-03T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 8
+    },
+    {
+      "date": {
+        "$date": "2012-07-18T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2012-03-09T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2011-10-14T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    }
+  ],
+  "name": "Wilken'S Fine Food",
+  "restaurant_id": "40356483"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4292c"
+  },
+  "address": {
+    "building": "2206",
+    "street": "Victory Boulevard"
+  },
+  "cuisine": "Jewish/Kosher",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-10-06T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    },
+    {
+      "date": {
+        "$date": "2014-05-20T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2013-04-04T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2012-01-24T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    }
+  ],
+  "name": "Kosher Island",
+  "restaurant_id": "40356442"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4292d"
+  },
+  "address": {
+    "building": "469",
+    "street": "Flatbush Avenue"
+  },
+  "cuisine": "Hamburgers",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-12-30T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 8
+    },
+    {
+      "date": {
+        "$date": "2014-07-01T00:00:00Z"
+      },
+      "grade": "B",
+      "score": 23
+    },
+    {
+      "date": {
+        "$date": "2013-04-30T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2012-05-08T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    }
+  ],
+  "name": "Wendy'S",
+  "restaurant_id": "30112340"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4292e"
+  },
+  "address": {
+    "building": "1007",
+    "street": "Morris Park Ave"
+  },
+  "cuisine": "Bakery",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-03-03T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 2
+    },
+    {
+      "date": {
+        "$date": "2013-09-11T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 6
+    },
+    {
+      "date": {
+        "$date": "2013-01-24T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2011-11-23T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    },
+    {
+      "date": {
+        "$date": "2011-03-10T00:00:00Z"
+      },
+      "grade": "B",
+      "score": 14
+    }
+  ],
+  "name": "Morris Park Bake Shop",
+  "restaurant_id": "30075445"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4292f"
+  },
+  "address": {
+    "building": "97-22",
+    "street": "63 Road"
+  },
+  "cuisine": "Jewish/Kosher",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-11-24T00:00:00Z"
+      },
+      "grade": "Z",
+      "score": 20
+    },
+    {
+      "date": {
+        "$date": "2013-01-17T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2012-08-02T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2011-12-15T00:00:00Z"
+      },
+      "grade": "B",
+      "score": 25
+    }
+  ],
+  "name": "Tov Kosher Kitchen",
+  "restaurant_id": "40356068"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42930"
+  },
+  "address": {
+    "building": "8825",
+    "street": "Astoria Boulevard"
+  },
+  "cuisine": "American",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-11-15T00:00:00Z"
+      },
+      "grade": "Z",
+      "score": 38
+    },
+    {
+      "date": {
+        "$date": "2014-05-02T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2013-03-02T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 7
+    },
+    {
+      "date": {
+        "$date": "2012-02-10T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    }
+  ],
+  "name": "Brunos On The Boulevard",
+  "restaurant_id": "40356151"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42931"
+  },
+  "address": {
+    "building": "6409",
+    "street": "11 Avenue"
+  },
+  "cuisine": "American",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-07-18T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2013-07-30T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2013-02-13T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    },
+    {
+      "date": {
+        "$date": "2012-08-16T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 2
+    },
+    {
+      "date": {
+        "$date": "2011-08-17T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    }
+  ],
+  "name": "Regina Caterers",
+  "restaurant_id": "40356649"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42932"
+  },
+  "address": {
+    "building": "1839",
+    "street": "Nostrand Avenue"
+  },
+  "cuisine": "Ice Cream, Gelato, Yogurt, Ices",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-07-14T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2013-07-10T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 8
+    },
+    {
+      "date": {
+        "$date": "2012-07-11T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 5
+    },
+    {
+      "date": {
+        "$date": "2012-02-23T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 8
+    }
+  ],
+  "name": "Taste The Tropics Ice Cream",
+  "restaurant_id": "40356731"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42933"
+  },
+  "address": {
+    "building": "2300",
+    "street": "Southern Boulevard"
+  },
+  "cuisine": "American",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-05-28T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    },
+    {
+      "date": {
+        "$date": "2013-06-19T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 4
+    },
+    {
+      "date": {
+        "$date": "2012-06-15T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 3
+    }
+  ],
+  "name": "Wild Asia",
+  "restaurant_id": "40357217"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42934"
+  },
+  "address": {
+    "building": "7715",
+    "street": "18 Avenue"
+  },
+  "cuisine": "American",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-04-16T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 5
+    },
+    {
+      "date": {
+        "$date": "2013-04-23T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 2
+    },
+    {
+      "date": {
+        "$date": "2012-04-24T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 5
+    },
+    {
+      "date": {
+        "$date": "2011-12-16T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 2
+    }
+  ],
+  "name": "C & C Catering Service",
+  "restaurant_id": "40357437"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42935"
+  },
+  "address": {
+    "building": "705",
+    "street": "Kings Highway"
+  },
+  "cuisine": "Jewish/Kosher",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-11-10T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    },
+    {
+      "date": {
+        "$date": "2013-10-10T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2012-10-04T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 7
+    },
+    {
+      "date": {
+        "$date": "2012-05-21T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    },
+    {
+      "date": {
+        "$date": "2011-12-30T00:00:00Z"
+      },
+      "grade": "B",
+      "score": 19
+    }
+  ],
+  "name": "Seuda Foods",
+  "restaurant_id": "40360045"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42936"
+  },
+  "address": {
+    "building": "1269",
+    "street": "Sutter Avenue"
+  },
+  "cuisine": "Chinese",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-09-16T00:00:00Z"
+      },
+      "grade": "B",
+      "score": 21
+    },
+    {
+      "date": {
+        "$date": "2013-08-28T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 7
+    },
+    {
+      "date": {
+        "$date": "2013-04-02T00:00:00Z"
+      },
+      "grade": "C",
+      "score": 56
+    },
+    {
+      "date": {
+        "$date": "2012-08-15T00:00:00Z"
+      },
+      "grade": "B",
+      "score": 27
+    },
+    {
+      "date": {
+        "$date": "2012-03-28T00:00:00Z"
+      },
+      "grade": "B",
+      "score": 27
+    }
+  ],
+  "name": "May May Kitchen",
+  "restaurant_id": "40358429"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42937"
+  },
+  "address": {
+    "building": "1",
+    "street": "East   66 Street"
+  },
+  "cuisine": "American",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-05-07T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 3
+    },
+    {
+      "date": {
+        "$date": "2013-05-03T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 4
+    },
+    {
+      "date": {
+        "$date": "2012-04-30T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 6
+    },
+    {
+      "date": {
+        "$date": "2011-12-27T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 0
+    }
+  ],
+  "name": "1 East 66Th Street Kitchen",
+  "restaurant_id": "40359480"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42938"
+  },
+  "address": {
+    "building": "265-15",
+    "street": "Hillside Avenue"
+  },
+  "cuisine": "Ice Cream, Gelato, Yogurt, Ices",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-10-28T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    },
+    {
+      "date": {
+        "$date": "2013-09-18T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2012-09-20T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    }
+  ],
+  "name": "Carvel Ice Cream",
+  "restaurant_id": "40361322"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42939"
+  },
+  "address": {
+    "building": "351",
+    "street": "West   57 Street"
+  },
+  "cuisine": "Irish",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-09-06T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 2
+    },
+    {
+      "date": {
+        "$date": "2013-07-22T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    },
+    {
+      "date": {
+        "$date": "2012-07-31T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2011-12-29T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    }
+  ],
+  "name": "Dj Reynolds Pub And Restaurant",
+  "restaurant_id": "30191841"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4293a"
+  },
+  "address": {
+    "building": "203",
+    "street": "Church Avenue"
+  },
+  "cuisine": "Ice Cream, Gelato, Yogurt, Ices",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-02-10T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 2
+    },
+    {
+      "date": {
+        "$date": "2013-01-02T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2012-01-09T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 3
+    },
+    {
+      "date": {
+        "$date": "2011-11-07T00:00:00Z"
+      },
+      "grade": "P",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2011-07-21T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    }
+  ],
+  "name": "Carvel Ice Cream",
+  "restaurant_id": "40360076"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4293b"
+  },
+  "address": {
+    "building": "6909",
+    "street": "3 Avenue"
+  },
+  "cuisine": "Delicatessen",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-08-21T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 4
+    },
+    {
+      "date": {
+        "$date": "2014-03-05T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 3
+    },
+    {
+      "date": {
+        "$date": "2013-01-10T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    }
+  ],
+  "name": "Nordic Delicacies",
+  "restaurant_id": "40361390"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4293c"
+  },
+  "address": {
+    "building": "284",
+    "street": "Prospect Park West"
+  },
+  "cuisine": "American",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-11-19T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    },
+    {
+      "date": {
+        "$date": "2013-11-14T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 2
+    },
+    {
+      "date": {
+        "$date": "2012-12-05T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2012-05-17T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    }
+  ],
+  "name": "The Movable Feast",
+  "restaurant_id": "40361606"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4293d"
+  },
+  "address": {
+    "building": "759",
+    "street": "Broadway"
+  },
+  "cuisine": "Delicatessen",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-01-21T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2013-01-04T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    },
+    {
+      "date": {
+        "$date": "2012-06-07T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 6
+    },
+    {
+      "date": {
+        "$date": "2012-01-17T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 8
+    }
+  ],
+  "name": "Bully'S Deli",
+  "restaurant_id": "40361708"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4293e"
+  },
+  "address": {
+    "building": "129-08",
+    "street": "20 Avenue"
+  },
+  "cuisine": "Delicatessen",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-08-16T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2013-08-27T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    },
+    {
+      "date": {
+        "$date": "2012-09-20T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 7
+    },
+    {
+      "date": {
+        "$date": "2011-09-29T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    }
+  ],
+  "name": "Sal'S Deli",
+  "restaurant_id": "40361618"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4293f"
+  },
+  "address": {
+    "building": "3406",
+    "street": "10 Street"
+  },
+  "cuisine": "Delicatessen",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-03-19T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 3
+    },
+    {
+      "date": {
+        "$date": "2013-03-13T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2012-03-27T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 8
+    },
+    {
+      "date": {
+        "$date": "2011-04-05T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 7
+    }
+  ],
+  "name": "Steve Chu'S Deli & Grocery",
+  "restaurant_id": "40361998"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42940"
+  },
+  "address": {
+    "building": "522",
+    "street": "East   74 Street"
+  },
+  "cuisine": "American",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-09-02T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2013-12-19T00:00:00Z"
+      },
+      "grade": "B",
+      "score": 16
+    },
+    {
+      "date": {
+        "$date": "2013-05-28T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    },
+    {
+      "date": {
+        "$date": "2012-12-07T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2012-03-29T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    }
+  ],
+  "name": "Glorious Food",
+  "restaurant_id": "40361521"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42941"
+  },
+  "address": {
+    "building": "730",
+    "street": "Columbus Avenue"
+  },
+  "cuisine": "American",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-09-12T00:00:00Z"
+      },
+      "grade": "B",
+      "score": 26
+    },
+    {
+      "date": {
+        "$date": "2013-08-28T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    },
+    {
+      "date": {
+        "$date": "2013-03-25T00:00:00Z"
+      },
+      "grade": "B",
+      "score": 20
+    },
+    {
+      "date": {
+        "$date": "2012-02-14T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    }
+  ],
+  "name": "P & S Deli Grocery",
+  "restaurant_id": "40362264"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42942"
+  },
+  "address": {
+    "building": "502",
+    "street": "Amsterdam Avenue"
+  },
+  "cuisine": "Chicken",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-09-15T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2014-03-04T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2013-07-18T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2013-01-09T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    },
+    {
+      "date": {
+        "$date": "2012-04-10T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2011-11-15T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 7
+    }
+  ],
+  "name": "Harriet'S Kitchen",
+  "restaurant_id": "40362098"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42943"
+  },
+  "address": {
+    "building": "18",
+    "street": "West Houston Street"
+  },
+  "cuisine": "American",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-04-03T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    },
+    {
+      "date": {
+        "$date": "2013-04-05T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 4
+    },
+    {
+      "date": {
+        "$date": "2012-03-21T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2011-04-27T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 5
+    }
+  ],
+  "name": "Angelika Film Center",
+  "restaurant_id": "40362274"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42944"
+  },
+  "address": {
+    "building": "531",
+    "street": "Myrtle Avenue"
+  },
+  "cuisine": "Hamburgers",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-03-18T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 8
+    },
+    {
+      "date": {
+        "$date": "2013-03-18T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 8
+    },
+    {
+      "date": {
+        "$date": "2012-10-10T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 7
+    },
+    {
+      "date": {
+        "$date": "2011-09-22T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 2
+    }
+  ],
+  "name": "White Castle",
+  "restaurant_id": "40362344"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42945"
+  },
+  "address": {
+    "building": "60",
+    "street": "Wall Street"
+  },
+  "cuisine": "Turkish",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-09-26T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    },
+    {
+      "date": {
+        "$date": "2013-09-18T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2012-09-21T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    },
+    {
+      "date": {
+        "$date": "2012-05-09T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    }
+  ],
+  "name": "The Country Cafe",
+  "restaurant_id": "40362715"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42946"
+  },
+  "address": {
+    "building": "195",
+    "street": "East   56 Street"
+  },
+  "cuisine": "Caribbean",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-05-13T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 2
+    },
+    {
+      "date": {
+        "$date": "2013-05-08T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 7
+    },
+    {
+      "date": {
+        "$date": "2012-09-22T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    },
+    {
+      "date": {
+        "$date": "2011-06-06T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    }
+  ],
+  "name": "Shashemene Int'L Restaura",
+  "restaurant_id": "40362869"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42947"
+  },
+  "address": {
+    "building": "103-05",
+    "street": "37 Avenue"
+  },
+  "cuisine": "Chinese",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-04-21T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2013-11-12T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 5
+    },
+    {
+      "date": {
+        "$date": "2013-06-04T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2012-11-14T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2012-10-11T00:00:00Z"
+      },
+      "grade": "P",
+      "score": 0
+    },
+    {
+      "date": {
+        "$date": "2012-05-24T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2011-12-08T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 12
+    },
+    {
+      "date": {
+        "$date": "2011-07-20T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    }
+  ],
+  "name": "Ho Mei Restaurant",
+  "restaurant_id": "40362432"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42948"
+  },
+  "address": {
+    "building": "56",
+    "street": "Court Street"
+  },
+  "cuisine": "Donuts",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-12-30T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 8
+    },
+    {
+      "date": {
+        "$date": "2014-01-15T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    },
+    {
+      "date": {
+        "$date": "2013-01-08T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    },
+    {
+      "date": {
+        "$date": "2012-01-19T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    }
+  ],
+  "name": "Dunkin' Donuts",
+  "restaurant_id": "40363098"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f42949"
+  },
+  "address": {
+    "building": "7615",
+    "street": "5 Avenue"
+  },
+  "cuisine": "American",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-12-04T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2013-10-24T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    },
+    {
+      "date": {
+        "$date": "2013-04-18T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 5
+    },
+    {
+      "date": {
+        "$date": "2012-04-05T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    }
+  ],
+  "name": "Mejlander & Mulgannon",
+  "restaurant_id": "40363117"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4294a"
+  },
+  "address": {
+    "building": "1006",
+    "street": "East 233 Street"
+  },
+  "cuisine": "Ice Cream, Gelato, Yogurt, Ices",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-04-24T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2013-09-05T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2013-02-21T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 9
+    },
+    {
+      "date": {
+        "$date": "2012-07-03T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    },
+    {
+      "date": {
+        "$date": "2011-07-11T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 5
+    }
+  ],
+  "name": "Carvel Ice Cream",
+  "restaurant_id": "40363093"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4294b"
+  },
+  "address": {
+    "building": "1236",
+    "street": "238 Spofford Ave"
+  },
+  "cuisine": "Chinese",
+  "grades": [
+    {
+      "date": {
+        "$date": "2013-12-30T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 8
+    },
+    {
+      "date": {
+        "$date": "2013-01-08T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 10
+    },
+    {
+      "date": {
+        "$date": "2012-06-12T00:00:00Z"
+      },
+      "grade": "B",
+      "score": 15
+    }
+  ],
+  "name": "Happy Garden",
+  "restaurant_id": "40363289"
+},{
+  "_id": {
+    "$oid": "5eb3d668b31de5d588f4294c"
+  },
+  "address": {
+    "building": "120",
+    "street": "Prince Street"
+  },
+  "cuisine": "Bakery",
+  "grades": [
+    {
+      "date": {
+        "$date": "2014-10-17T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 11
+    },
+    {
+      "date": {
+        "$date": "2013-09-18T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 13
+    },
+    {
+      "date": {
+        "$date": "2013-04-30T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 7
+    },
+    {
+      "date": {
+        "$date": "2012-04-20T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 7
+    },
+    {
+      "date": {
+        "$date": "2011-12-19T00:00:00Z"
+      },
+      "grade": "A",
+      "score": 3
+    }
+  ],
+  "name": "Olive'S",
+  "restaurant_id": "40363151"
+}]
+// const mongoose = require("mongoose");
+// const Restaurant = require("./model");
+
+async function insert () {
+  const newObj = []
+  for(const {name, restaurant_id, address, cuisine, grades} of data) {
+    newObj.push({name, restaurant_id, address, cuisine, grades});
+  }
+
+  await mongoose.connect("mongodb://localhost:27017/moodme")
+  await Restaurant.insertMany(newObj);
+  console.log("inserted")
+}
+
+insert()

@@ -15,36 +15,36 @@ const grade = new Schema({
     date: {
         $date: {
             type: Date,
-            // required: true,
+            required: true,
         }
     },
 
     grade: {
         type: String,
-        // required: true,
-        // minlength: 1,
-        // maxlength: 1
+        required: true,
+        minlength: 1,
+        maxlength: 1
     },
 
     score: {
         type: Number,
-        // required: true,
-        // min: 0
+        required: true,
+        min: 0
     }
 }, { timestamps: false })
 
-const restaurantId = new Schema({
+const restaurantSchema = new Schema({
     address: {
         building: {
             type: String,
-            // required: true,
-            // minlength: 1,
+            required: true,
+            minlength: 1,
         },
 
         street: {
             type: String,
-            // required: true,
-            // minlength: 1,
+            required: true,
+            minlength: 1,
         },
     },
 
@@ -54,31 +54,23 @@ const restaurantId = new Schema({
 
     name: {
         type: String,
-        // required: true,
-        // minlength: 1
+        required: true,
+        minlength: 1
     },
 
     restaurant_id: {
         type: String,
-        // minlength: 1,
-        // required: true,
+        minlength: 1,
+        required: true,
     },
 
     cuisine: {
         type: String,
-        // required: true,
-        // minlength: 1
+        required: true,
+        minlength: 1
     },
-
-    _id: {
-        $oid: {
-            type: String,
-            // required: true,
-            // minlength: 1
-        }
-    }
 }, { timestamps: false });
 
-const Restaurant = mongoose.model<restaurantDocument>('Restuarant', restaurantId);
+const Restaurant = mongoose.model<restaurantDocument>('Restuarant', restaurantSchema);
 
 export default Restaurant;
