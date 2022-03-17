@@ -29,24 +29,15 @@ class App {
             console.log("connected to the db")
         } catch(ex) {
             console.log('couldnt connect');
-            process.exit(1);
+            // process.exit(1);
         }
     }
-
-    // private async insertData () {
-    //     try {
-    //         await Restaurant.insertMany(data);
-    //         console.log('data has been inserted')
-    //     } catch (ex: any) {
-    //         console.log("err", ex.message)
-    //     }
-    // }
 
     public static init (): App {
         return new App();
     }
 
-    public get getApp (): Express {
+    public getApp (): Express {
         return this.app;
     }
 }
